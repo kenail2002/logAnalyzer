@@ -1,11 +1,13 @@
 ## 1.introduce
-aim to build log analyzer tool for Log4J tools
+Aim to build log analyzer tool for Log4J log files
 
 
 ##  2.basic component
-1.log extractor
+1.log extractor;
+
 2.log loader into database;
-3.log searcher and analyzer
+
+3.log searcher and analyzer;
 
 
 ## 3. build tools
