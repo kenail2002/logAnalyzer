@@ -1,6 +1,6 @@
 package p.k.tools.h2db
 
-import java.util.Random
+import java.util.*
 
 class LogRecord()
 {
