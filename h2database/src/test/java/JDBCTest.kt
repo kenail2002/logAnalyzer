@@ -1,31 +1,28 @@
 package p.k.tools.h2db
 
+import org.junit.Test
 import org.slf4j.LoggerFactory
 import org.springframework.context.support.ClassPathXmlApplicationContext
 import javax.sql.DataSource
-
+import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
 
 class JDBCTest
 {
-}
+    val log = LoggerFactory.getLogger(JDBCTest::class.java)
 
-object SpringJDBC
-{
-
-    val log = LoggerFactory.getLogger(SpringJDBC::class.java)
-    /**+
-     * @param args
-     */
-    @JvmStatic
-    fun main(args: Array<String>)
+    @Test
+    fun testSaveLog()
     {
-        // TODO Auto-generated method stub
         val ctx = ClassPathXmlApplicationContext("applicationContext.xml")
-        val studentService = ctx.getBean("studentService") as StudentService
-        studentService.setDataSource(ctx.getBean("dataSource") as DataSource)
-        studentService.save(Student("zq", "password", 100))
-        val list = studentService.queryStudent()
+        val logService = ctx.getBean("logDaoService") as LogDaoService
+        logService.setDataSource(ctx.getBean("dataSource") as DataSource)
+        logService.save(LogRecord("zq", "password", 100))
+        val list = logService.queryLogs()
         log.info("list=$list")
+        assertNotNull(list)
+        assertEquals("zq", list[0].username)
+        assertEquals(100, list[0].age)
 
     }
 

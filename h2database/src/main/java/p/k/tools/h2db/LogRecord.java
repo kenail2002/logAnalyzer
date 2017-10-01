@@ -2,7 +2,7 @@ package p.k.tools.h2db;
 
 import java.util.Random;
 
-public class Student {
+public class LogRecord {
 
 
     private long id;
@@ -10,11 +10,11 @@ public class Student {
     private String password;
     private int age;
 
-    public Student() {
+    public LogRecord() {
         this.id = System.currentTimeMillis() * 1000 + new Random().nextInt() % 100;
     }
 
-    public Student(String us1, String pd, int age1) {
+    public LogRecord(String us1, String pd, int age1) {
         this();
         this.username = us1;
         this.password = pd;

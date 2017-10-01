@@ -44,7 +44,7 @@
           ignore-failures="ALL">
             <jdbc:script location="classpath:db/h2/create-table.sql" />
        </jdbc:initialize-database>
-    <bean id="studentService" class="p.k.tools.h2db.StudentServiceImpl"/>
+    <bean id="logDaoService" class="p.k.tools.h2db.LogDaoServiceImpl"/>
 
 
     <!-- mybatis文件配置，扫描所有mapper文件 -->

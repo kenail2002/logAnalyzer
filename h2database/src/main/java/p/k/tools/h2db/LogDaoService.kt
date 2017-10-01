@@ -3,9 +3,9 @@ package p.k.tools.h2db
 import java.util.*
 import javax.sql.DataSource
 
-interface StudentService
+interface LogDaoService
 {
-    fun queryStudent(): ArrayList<Student>
+    fun queryLogs(): ArrayList<LogRecord>
     /**
      * @param dataSource the jdbcTemplate to set
      */
@@ -14,7 +14,7 @@ interface StudentService
     @Throws(Exception::class)
     fun delete(id: Int)
 
-    fun getStudent(id: Int): Student
+    fun getLog(id: Int): LogRecord
 
-    fun save(student: Student)
+    fun save(logRecord: LogRecord)
 }
