@@ -12,7 +12,10 @@ Aim to build log analyzer tool for Log4J log files
 
 ## 3. build tools
 maven 3.3+
+
 JDK8+
+
+Kotlin 1.1.51+
 
 
 ##  9. license
