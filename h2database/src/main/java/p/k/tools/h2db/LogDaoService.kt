@@ -12,9 +12,11 @@ interface LogDaoService
     fun setDataSource(dataSource: DataSource)
 
     @Throws(Exception::class)
-    fun delete(id: Int)
+    fun delete(id: Long)
+    @Throws(Exception::class)
+    fun deleteAll()
 
-    fun getLog(id: Int): LogRecord
+    fun getLog(id: Long): LogRecord
 
     fun save(logRecord: LogRecord)
 }
