@@ -32,19 +32,19 @@ class StudentServiceImpl : StudentService
     @Throws(Exception::class)
     override fun delete(id: Int)
     {
-        jdbcTemplate!!.update("delete from student where id=?", arrayOf<Any>(id), intArrayOf(java.sql.Types.INTEGER))
+        jdbcTemplate!!.update("delete from student where id=?", arrayOf<Any>(id), intArrayOf(java.sql.Types.BIGINT))
     }
 
     override fun getStudent(id: Int): Student
     {
-        return jdbcTemplate!!.queryForObject("select * from student where id=?", arrayOf<Any>(id), intArrayOf(java.sql.Types.INTEGER), StudentRowMapper()) as Student
+        return jdbcTemplate!!.queryForObject("select * from student where id=?", arrayOf<Any>(id), intArrayOf(java.sql.Types.BIGINT), StudentRowMapper()) as Student
     }
 
     override fun save(student: Student)
     {
-        jdbcTemplate!!.update("insert into student(username,password,age) values(?,?,?)",
-                arrayOf(student.username, student.password, student.age),
-                intArrayOf (Types.VARCHAR, Types.VARCHAR, Types.INTEGER));
+        jdbcTemplate!!.update("insert into student(id,username,password,age) values(?,?,?,?)",
+                arrayOf(student.id, student.username, student.password, student.age),
+                intArrayOf(Types.BIGINT, Types.VARCHAR, Types.VARCHAR, Types.INTEGER));
     }
 
 

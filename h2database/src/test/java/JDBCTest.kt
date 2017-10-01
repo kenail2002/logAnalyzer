@@ -1,5 +1,6 @@
 package p.k.tools.h2db
 
+import org.slf4j.LoggerFactory
 import org.springframework.context.support.ClassPathXmlApplicationContext
 import javax.sql.DataSource
 
@@ -11,6 +12,7 @@ class JDBCTest
 object SpringJDBC
 {
 
+    val log = LoggerFactory.getLogger(SpringJDBC::class.java)
     /**+
      * @param args
      */
@@ -21,13 +23,10 @@ object SpringJDBC
         val ctx = ClassPathXmlApplicationContext("applicationContext.xml")
         val studentService = ctx.getBean("studentService") as StudentService
         studentService.setDataSource(ctx.getBean("dataSource") as DataSource)
-        studentService.save(Student("zq","password",100))
+        studentService.save(Student("zq", "password", 100))
         val list = studentService.queryStudent()
-        for (student in list)
-        {
-            System.out.println("您的用户名是：" + student.username)
-            System.out.println("您的年龄是" + student.age)
-        }
+        log.info("list=$list")
+
     }
 
 }

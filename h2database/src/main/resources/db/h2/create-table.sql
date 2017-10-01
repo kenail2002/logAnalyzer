@@ -1,1 +1,1 @@
-create table student(username varchar(64),password varchar(64),age int);
+create table student(id BIGINT ,username varchar(64),password varchar(64),age int);

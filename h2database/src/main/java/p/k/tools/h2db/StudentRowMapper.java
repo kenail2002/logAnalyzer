@@ -8,7 +8,8 @@ import java.sql.SQLException;
 public class StudentRowMapper implements RowMapper {
 
     public Object mapRow(ResultSet rs, int index) throws SQLException {
-        Student student = new Student(rs.getString("username"), rs.getString("password"),rs.getInt("age"));
+        Student student = new Student(rs.getString("username"), rs.getString("password"), rs.getInt("age"));
+        student.setId(rs.getLong("id"));
         return student;
 
     }
