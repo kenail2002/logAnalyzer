@@ -1,0 +1,1 @@
+create table student(username varchar(64),password varchar(64),age int);
