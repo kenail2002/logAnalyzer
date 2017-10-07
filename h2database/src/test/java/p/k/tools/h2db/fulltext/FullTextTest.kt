@@ -45,5 +45,7 @@ class FullTextTest
         assertTrue(rs.next());
         rs = stat.executeQuery("SELECT * FROM FT_SEARCH_DATA('Welcome', 0, 0)");
         assertTrue(rs.next());
+        logService.deleteAll()
+
     }
 }

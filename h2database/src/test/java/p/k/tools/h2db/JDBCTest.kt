@@ -26,6 +26,8 @@ class JDBCTest
         assertNotNull(list)
         assertEquals("zq", list[0].logLevel)
         assertEquals("100", list[0].msg)
+        logService.deleteAll()
+
     }
 
     @Test
@@ -40,6 +42,7 @@ class JDBCTest
         assertNotNull(log2)
         assertEquals("zq", log2.logLevel)
         assertEquals("100", log2.msg)
+        logService.deleteAll()
 
     }
 
