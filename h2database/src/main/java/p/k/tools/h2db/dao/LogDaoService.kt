@@ -1,5 +1,6 @@
-package p.k.tools.h2db
+package p.k.tools.h2db.dao
 
+import p.k.tools.h2db.LogRecord
 import java.util.*
 import javax.sql.DataSource
 

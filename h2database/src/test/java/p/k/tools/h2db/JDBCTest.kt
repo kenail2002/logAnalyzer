@@ -3,6 +3,7 @@ package p.k.tools.h2db
 import org.junit.Test
 import org.slf4j.LoggerFactory
 import org.springframework.context.support.ClassPathXmlApplicationContext
+import p.k.tools.h2db.dao.LogDaoService
 import javax.sql.DataSource
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull

@@ -1,6 +1,7 @@
-package p.k.tools.h2db
+package p.k.tools.h2db.dao
 
 import org.springframework.jdbc.core.RowMapper
+import p.k.tools.h2db.LogRecord
 
 import java.sql.ResultSet
 import java.sql.SQLException
