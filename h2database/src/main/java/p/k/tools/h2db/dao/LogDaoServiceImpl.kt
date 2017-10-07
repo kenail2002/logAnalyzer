@@ -58,9 +58,9 @@ class LogDaoServiceImpl : LogDaoService
 
     override fun save(logRecord: LogRecord)
     {
-        jdbcTemplate!!.update("insert into logRecord(id,username,password,age) values(?,?,?,?)",
-                arrayOf(logRecord.id, logRecord.username, logRecord.password, logRecord.age),
-                intArrayOf(Types.BIGINT, Types.VARCHAR, Types.VARCHAR, Types.INTEGER));
+        jdbcTemplate!!.update("insert into logRecord(id,loglevel,threadName,logTime,msg) values(?,?,?,?,?)",
+                arrayOf(logRecord.id, logRecord.logLevel, logRecord.threadName, logRecord.logTime,logRecord.msg),
+                intArrayOf(Types.BIGINT, Types.VARCHAR, Types.VARCHAR, Types.TIMESTAMP,Types.VARCHAR));
     }
 
 

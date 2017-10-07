@@ -12,8 +12,11 @@ class LogRowMapper : RowMapper<LogRecord>
     @Throws(SQLException::class)
     override fun mapRow(rs: ResultSet, index: Int): LogRecord
     {
-        val logRecord = LogRecord(rs.getString("username"), rs.getString("password"), rs.getInt("age"))
+        val logRecord = LogRecord(rs.getTimestamp("logtime"),rs.getString("logLevel"), rs.getString("threadname"), rs
+                .getString
+        ("msg"))
         logRecord.id = rs.getLong("id")
+
         return logRecord
 
     }

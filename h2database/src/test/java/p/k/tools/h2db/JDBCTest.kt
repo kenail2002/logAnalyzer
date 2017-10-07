@@ -4,6 +4,7 @@ import org.junit.Test
 import org.slf4j.LoggerFactory
 import org.springframework.context.support.ClassPathXmlApplicationContext
 import p.k.tools.h2db.dao.LogDaoService
+import java.sql.Timestamp
 import javax.sql.DataSource
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
@@ -19,12 +20,12 @@ class JDBCTest
         val ctx = ClassPathXmlApplicationContext("applicationContext.xml")
         val logService = ctx.getBean("logDaoService") as LogDaoService
         logService.setDataSource(ctx.getBean("dataSource") as DataSource)
-        logService.save(LogRecord("zq", "password", 100))
+        logService.save(LogRecord(Timestamp(System.currentTimeMillis()), "zq", "password", "100"))
         val list = logService.queryLogs()
         log.info("list=$list")
         assertNotNull(list)
-        assertEquals("zq", list[0].username)
-        assertEquals(100, list[0].age)
+        assertEquals("zq", list[0].logLevel)
+        assertEquals("100", list[0].msg)
     }
 
     @Test
@@ -33,12 +34,12 @@ class JDBCTest
         val ctx = ClassPathXmlApplicationContext("applicationContext.xml")
         val logService = ctx.getBean("logDaoService") as LogDaoService
         logService.setDataSource(ctx.getBean("dataSource") as DataSource)
-        val logRecord = LogRecord("zq", "password", 100)
+        val logRecord = LogRecord(Timestamp(System.currentTimeMillis()), "zq", "password", "100")
         logService.save(logRecord)
         val log2 = logService.getLog(logRecord.id)
         assertNotNull(log2)
-        assertEquals("zq", log2.username)
-        assertEquals(100, log2.age)
+        assertEquals("zq", log2.logLevel)
+        assertEquals("100", log2.msg)
 
     }
 
@@ -59,7 +60,7 @@ class JDBCTest
         val ctx = ClassPathXmlApplicationContext("applicationContext.xml")
         val logService = ctx.getBean("logDaoService") as LogDaoService
         logService.setDataSource(ctx.getBean("dataSource") as DataSource)
-        val logRecord = LogRecord("zq", "password", 100)
+        val logRecord = LogRecord(Timestamp(System.currentTimeMillis()), "zq", "password", "100")
         logService.save(logRecord)
         logService.deleteAll()
         val log2 = logService.queryLogs()
