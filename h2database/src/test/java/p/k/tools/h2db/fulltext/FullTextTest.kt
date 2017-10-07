@@ -5,9 +5,6 @@ import org.junit.Assert.*
 import org.junit.Test
 import org.springframework.context.support.ClassPathXmlApplicationContext
 import p.k.tools.h2db.dao.LogDaoService
-import java.sql.Connection
-import java.sql.ResultSet
-import java.sql.Statement
 import javax.sql.DataSource
 
 class FullTextTest
@@ -22,17 +19,13 @@ class FullTextTest
         logService.setDataSource(ds)
 
 
+        val conn = ds.connection;
 
-        val conn =   ds.connection;
+        var stat = conn.createStatement();
 
-        var  stat = conn.createStatement();
-//        stat.execute("CREATE ALIAS IF NOT EXISTS FT_INIT FOR \"org.h2.fulltext.FullText.init\"");
-//        stat.execute("CALL FT_INIT()");
         FullText.setIgnoreList(conn, "to,this");
-        FullText.setWhitespaceChars(conn, " ,.-");
-//        stat.execute("CREATE TABLE TEST(ID INT PRIMARY KEY, NAME VARCHAR)");
-//        stat.execute("INSERT INTO TEST VALUES(1, 'Welcome to this world, One_Word')");
-//        stat.execute("CALL FT_CREATE_INDEX('PUBLIC', 'TEST', NULL)");
+        FullText.setWhitespaceChars(conn, " ,.-")
+
         var rs = stat.executeQuery("SELECT * FROM FT_SEARCH('Welcome', 0, 0)");
         assertTrue(rs.next());
         assertEquals("QUERY", rs.getMetaData().getColumnLabel(1));
