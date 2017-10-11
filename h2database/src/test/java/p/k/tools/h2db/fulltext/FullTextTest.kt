@@ -4,7 +4,7 @@ import org.h2.fulltext.FullText
 import org.junit.Assert.*
 import org.junit.Test
 import org.springframework.context.support.ClassPathXmlApplicationContext
-import p.k.tools.h2db.LogRecord
+import p.k.tools.datasource.LogRecord
 import p.k.tools.h2db.dao.LogDaoService
 import java.sql.Timestamp
 import javax.sql.DataSource

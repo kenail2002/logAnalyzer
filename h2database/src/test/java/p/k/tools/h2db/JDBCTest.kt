@@ -3,6 +3,7 @@ package p.k.tools.h2db
 import org.junit.Test
 import org.slf4j.LoggerFactory
 import org.springframework.context.support.ClassPathXmlApplicationContext
+import p.k.tools.datasource.LogRecord
 import p.k.tools.h2db.dao.LogDaoService
 import java.sql.Timestamp
 import javax.sql.DataSource

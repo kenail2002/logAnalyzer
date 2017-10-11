@@ -1,4 +1,4 @@
-package p.k.tools.h2db
+package p.k.tools.datasource
 
 import java.sql.Timestamp
 import java.util.*
