@@ -13,53 +13,49 @@ import java.nio.file.Paths
 import java.util.*
 
 
-class IndexFileWriter
+object IndexFileWriter
 {
-    companion object
+
+    @JvmStatic
+    @Throws(IOException::class)
+    fun createWriter(): IndexWriter
     {
+        val INDEX_DIR = "/TMP"
+        val dir = FSDirectory.open(Paths.get(INDEX_DIR))
+        val config = IndexWriterConfig(StandardAnalyzer())
+        return IndexWriter(dir, config)
+    }
 
-        @JvmStatic
-        @Throws(IOException::class)
-        fun createWriter(): IndexWriter
-        {
-            val INDEX_DIR = "/TMP"
-            val dir = FSDirectory.open(Paths.get(INDEX_DIR))
-            val config = IndexWriterConfig(StandardAnalyzer())
-            return IndexWriter(dir, config)
-        }
-
-        @JvmStatic
-        fun createDocument(id: Int, firstName: String, lastName: String, website: String): Document
-        {
-            val document = Document()
-            document.add(StringField("id", id.toString(), Field.Store.YES))
-            document.add(TextField("firstName", firstName, Field.Store.YES))
-            document.add(TextField("lastName", lastName, Field.Store.YES))
-            document.add(TextField("website", website, Field.Store.YES))
-            return document
-        }
-
+    @JvmStatic
+    fun createDocument(id: Int, firstName: String, lastName: String, website: String): Document
+    {
+        val document = Document()
+        document.add(StringField("id", id.toString(), Field.Store.YES))
+        document.add(TextField("firstName", firstName, Field.Store.YES))
+        document.add(TextField("lastName", lastName, Field.Store.YES))
+        document.add(TextField("website", website, Field.Store.YES))
+        return document
     }
 
 
-}
+    @Throws(Exception::class)
+    fun main(args: Array<String>)
+    {
+        val writer = IndexFileWriter.createWriter()
+        val documents = ArrayList<Document>()
 
-@Throws(Exception::class)
-fun main(args: Array<String>)
-{
-    val writer = IndexFileWriter.createWriter()
-    val documents = ArrayList<Document>()
+        val document1 = IndexFileWriter.createDocument(1, "Lokesh", "Gupta", "howtodoinjava.com")
+        documents.add(document1)
 
-    val document1 = IndexFileWriter.createDocument(1, "Lokesh", "Gupta", "howtodoinjava.com")
-    documents.add(document1)
+        val document2 = IndexFileWriter.createDocument(2, "Brian", "Schultz", "example.com")
+        documents.add(document2)
 
-    val document2 = IndexFileWriter.createDocument(2, "Brian", "Schultz", "example.com")
-    documents.add(document2)
+        //Let's clean everything first
+        writer.deleteAll()
 
-    //Let's clean everything first
-    writer.deleteAll()
+        writer.addDocuments(documents)
+        writer.commit()
+        writer.close()
+    }
 
-    writer.addDocuments(documents)
-    writer.commit()
-    writer.close()
 }
