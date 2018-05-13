@@ -11,5 +11,6 @@
 
     <modules>
         <module>h2database</module>
+        <module>bundle_dependency</module>
     </modules>
 </project>
