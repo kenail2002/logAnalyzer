@@ -13,6 +13,7 @@ public class PomReader {
         MavenXpp3Reader reader = new MavenXpp3Reader();
         String myPom = System.getProperty("user.dir") + File.separator + "pom.xml";
         Model model = reader.read(new FileReader(myPom));
+        model.getDependencies().get(0).get
 
     }
 }
